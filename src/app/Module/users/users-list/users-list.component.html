@@ -1,0 +1,134 @@
+<div class="d-flex border border-light">
+  <div
+    class="sidebar bg-info p-3 d-flex flex-column"
+    style="width: 200px; height: 95vh"
+  >
+    <a routerLink="/home">HOME</a>
+    <a routerLink="/users">USERS</a>
+    <button class="btn mt-auto text-light  fs-6 " (click)="Logout()">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+  </div>
+  <div class="dashboard d-flex align-items-center flex-column">
+    <div class="dash">
+      <div class="d-flex mt-5">
+        <h4 class="fw-bold">Users</h4>
+        <button
+          type="button"
+          class="btn btn-light bt border-warning"
+          routerLink="add"
+        >
+          <i class="fa-solid fa-plus me-2"></i> New User
+        </button>
+      </div>
+      <div class="d-flex">
+        <div class="input-group mb-2 sear mt-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder=" Search by username"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            [(ngModel)]="searchKey"
+          />
+          <span class="input-group-text" id="basic-addon1"
+            ><i class="fa-solid fa-magnifying-glass btn"></i
+          ></span>
+        </div>
+        <div class="dropdown ms-2">
+          <button 
+            class="btn  dropdown-toggle ms-auto mt-3 mb-2 sort border-dark-subtle
+            "
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Sort
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <button class="btn text-dark" (click)="sortById()" style="font-weight: 600;">By Id</button>
+            </li>
+            <li>
+              <button class="btn text-dark" (click)="sortByName()" style="font-weight:600;">By Name</button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="btn btn-success down ms-auto mt-3 " (click)="generatePdf()">Download</div>
+      </div>
+
+      <table
+        class="table table-secondary table-hover table-bordered border-dark-subtle mt-2"
+      >
+        <thead>
+          <tr>
+            <th scope="col">USER ID</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let user of allUsers | search : searchKey : 'name'| paginate  :{
+              itemsPerPage: tablesize,
+              currentPage: page,
+              totalItems: count
+            }"
+            [hidden]="user.id === 1"
+          >
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <span
+                [ngClass]="
+                  user.active === '1'
+                    ? 'btn btn-success bit '
+                    : 'btn btn-danger'
+                "
+              >
+                {{ user.active !== "1" ? "InActive" : "Active" }}
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn" routerLink="edit/{{ user.id }}">
+                <i class="fa-solid fa-pen text-primary-emphasis"></i>
+              </button>
+              <button type="button" class="btn">
+                <i
+                  (click)="deleteUsers(user.id)"
+                  class="fa-solid fa-trash text-danger"
+                ></i>
+              </button>
+            </td>
+          </tr>
+
+          <p
+            class="text-danger mt-3"
+            *ngIf="(allUsers | search : searchKey : 'name').length === 0"
+          >
+            User does Not Exist
+          </p>
+        </tbody>
+       
+      </table>
+     
+<div class="d-flex justify-content-center align-items-center">
+  <pagination-controls 
+                      (pageChange)="pageChanged($event)"
+                      
+                      
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
+
+    </div>
+  </div>
+</div>
+

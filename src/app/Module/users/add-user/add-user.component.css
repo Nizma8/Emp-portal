@@ -1,0 +1,19 @@
+a{
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+.dashboard{
+    width: calc(100vw - 200px);
+}
+.dash{
+    width: calc(100vw - 1000px) ;
+}
+.bt{
+    margin-left: 184px;
+    width: 80px;
+}
+.tb{
+    margin-left: 10px;
+    width: 80px;}

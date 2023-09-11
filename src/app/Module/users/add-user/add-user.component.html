@@ -1,0 +1,90 @@
+<div class="d-flex border border-light">
+  <div
+    class="sidebar bg-info p-3 d-flex flex-column"
+    style="width: 200px; height: 95vh"
+  >
+    <a routerLink="/home">HOME</a>
+    <a routerLink="/users">USERS</a>
+  </div>
+  <div class="dashboard  ms-5">
+      <div class="dash ">
+          <div class="adduser">
+              <h2 class="my-5 text-center fw-bold">Add User</h2>
+          </div>
+          <form #addUserForm="ngForm">
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-4 col-form-label">User Id:</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control border-dark-subtle" id="inputEmail3"
+                   name="id"
+                  #id="ngModel"
+                  [(ngModel)]="user.id"
+                  pattern="[0-9]*"
+                  required>
+                  <div *ngIf="id.invalid && (id.dirty||id.touched)" 
+                   class=" text-danger" >*Invalid Id</div>
+                </div>
+                
+              </div>
+              <div class="row mb-3">
+                <label for="inputPssword3" class="col-sm-4 col-form-label">User Name:</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control  border-dark-subtle" id="inputPssword3"
+                  name="name"
+                  #name="ngModel"
+                  minlength="4"
+                  [(ngModel)]="user.name"
+                  required
+                  pattern="[a-zA-Z ]*"
+
+                  >
+                  <div *ngIf="name.invalid&& name.touched"
+                  class="text-danger">*Invalid UserName</div>
+                  <div *ngIf="name.errors?.['minlength']"  class=" text-danger " >
+                    Name must be at least 4 characters long.
+                  </div>
+                </div> 
+               
+              </div>
+              <div class="row mb-3">
+                  <label for="inputPassord3" class="col-sm-4 col-form-label">Email:</label>
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control  border-dark-subtle" id="inputPassord3"
+                    name="email"
+                  #email="ngModel"
+                  [(ngModel)]="user.email"
+                  required
+                  email
+                    >
+                     <div *ngIf="email.invalid&& email.touched"
+                  class="text-danger">*Invalid Email-Id</div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword3" class="col-sm-4 col-form-label dropdown">Status:</label>
+                      <div class="col-sm-8 ">
+                          <select  id="inputPassword3" class="w-100  border-dark-subtle p-2 rounded text-secondary"
+                          name="Active"
+                          #Active="ngModel"
+                          [(ngModel)]="user.active"
+                          required
+                          
+      >
+                            <option value="" selected disabled hidden ></option>
+                            <option 
+                             value="1">Active</option>
+                            <option value="0">Inactive</option>
+                          </select>
+                          <div *ngIf="Active.invalid&& Active.touched"
+                  class="text-danger">*Invalid Status</div>
+                  </div>
+                </div>
+             
+             
+              <button type="submit" class="btn btn-warning bt" (click)="cancel()">Cancel</button>
+              <button type="submit" class="btn btn-success tb"  [disabled]="addUserForm.invalid" (click)="addUser()">Save</button>
+  
+            </form>
+      </div>
+  </div>
+  </div>

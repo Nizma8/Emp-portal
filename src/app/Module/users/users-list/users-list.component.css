@@ -1,0 +1,35 @@
+a{
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+.dashboard{
+    width: calc(100vw - 200px);
+}
+.dash{
+    width: calc(100vw - 300px) ;
+}
+.bt{
+    margin-left: auto;
+}
+.bt:hover{
+    background-color: 	#FFC107;
+}
+
+.bit{
+    width: 85px;
+}
+.ip{
+ margin-left: 35%;
+}
+.sear{
+ width: 20%;
+}
+.sort{
+    width:150px;
+    
+}
+.down{
+    height: 35px;
+}

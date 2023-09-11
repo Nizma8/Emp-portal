@@ -1,0 +1,34 @@
+a{
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+h2,span{
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    margin-top: 80px;
+    color: #635d5d;
+  font-size: 35px;
+}
+.emp{
+    color: #635d5d;
+   font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-image: url(https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-2432.jpg?w=1060&t=st=1693892047~exp=1693892647~hmac=4af7a9992ff962589ed8998b473b180281e8c46a427a11c6dcd3f44e18eb511c);
+}
+.emp i{
+    font-size: 18px;
+    color: #464141;
+
+}
+.sp{
+    font-size: 20px;
+    color: rgb(35, 35, 35);
+
+}
